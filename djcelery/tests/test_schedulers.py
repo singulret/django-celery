@@ -5,7 +5,10 @@ from itertools import count
 
 from celery.five import monotonic
 from celery.schedules import schedule, crontab
-from celery.utils.timeutils import timedelta_seconds
+try:
+    from celery.utils.timeutils import timedelta_seconds
+except ImportError:
+    from celery.utils.time import timedelta_seconds
 
 from djcelery import schedulers
 from djcelery import celery

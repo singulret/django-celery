@@ -12,7 +12,11 @@ from django.conf import settings
 from celery import schedules
 from celery import states
 from celery.events.state import heartbeat_expires
-from celery.utils.timeutils import timedelta_seconds
+
+try:
+    from celery.utils.timeutils import timedelta_seconds
+except ImportError:
+    from celery.utils.time import timedelta_seconds
 
 from . import managers
 from .picklefield import PickledObjectField
